@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-MONGO_URI = os.getenv("MONGO_URI", "")
+MONGO_URI = os.getenv("MONGO_URI")
 DATABASE_NAME = os.getenv("DATABASE_NAME", "ecotech_es3")
 REQUEST_TIMEOUT = int(os.getenv("REQUEST_TIMEOUT", "10"))
 

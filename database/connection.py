@@ -1,4 +1,5 @@
 from pymongo import MongoClient
+import certifi
 from pymongo.server_api import ServerApi
 from pymongo.errors import PyMongoError
 from config.settings import MONGO_URI, DATABASE_NAME
@@ -9,13 +10,14 @@ class DatabaseConnection:
         self.database = None
 
     def connect(self):
-        if not MONGO_URI or "ivanmartinezrd14_db_user" in MONGO_URI or "cluster0" in MONGO_URI:
-            raise ConnectionError("configurar la dirección de mongodb Atlas en el archivo .env")
+        if not MONGO_URI or "TU_USUARIO" in MONGO_URI or "TU_PASSWORD" in MONGO_URI:
+            raise ConnectionError("configurar la dirección de MongoDB Atlas en el archivo .env")
 
         try:
             self.client = MongoClient(
                 MONGO_URI,
                 server_api=ServerApi("1"),
+                tlsCAFile=certifi.where(),
                 serverSelectionTimeoutMS=8000
             )
             self.client.admin.command("ping")
@@ -26,8 +28,7 @@ class DatabaseConnection:
         except PyMongoError as error:
             self.close()
             raise ConnectionError(
-                "no se pudo conectar con mongodb atlas"
-                "la contraseña y el acceso de red configurado en atlas"
+                "no se pudo conectar con mongo. revise la contraseña y el acceso de red configurado en Atlas."
             ) from error
 
     def get_database(self):

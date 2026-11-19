@@ -11,7 +11,6 @@ class EcoTechApplication:
     def __init__(self):
         self.database_connection = DatabaseConnection()
         self.database = self.database_connection.connect()
-
         self.user_repository = UserRepository(self.database)
         self.history_repository = HistoryRepository(self.database)
         self.auth_service = AuthService(self.user_repository)
@@ -38,7 +37,6 @@ class EcoTechApplication:
             self.show_login()
         finally:
             self.database_connection.close()
-
 
 if __name__ == "__main__":
     try:
