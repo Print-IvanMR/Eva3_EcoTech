@@ -1,0 +1,3 @@
+MONGO_URI=mongodb+srv://usuario:password@cluster0.rwt6xdx.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+DATABASE_NAME=EcoTech
+REQUEST_TIMEOUT=10
